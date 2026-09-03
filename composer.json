@@ -1,0 +1,62 @@
+{
+    "name": "woodynew/dcat-admin-kit",
+    "description": "Reusable, project-neutral extensions for Woodynew Dcat Admin applications.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "dcat-admin",
+        "laravel",
+        "admin",
+        "extension"
+    ],
+    "authors": [
+        {
+            "name": "woody",
+            "email": "78925880@qq.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "woodynew/dcat-laravel-admin": "^2.2.4"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.5",
+        "orchestra/testbench": "^6.23 || ^7.0 || ^8.0 || ^9.0 || ^10.0",
+        "phpstan/phpstan": "^1.12 || ^2.0",
+        "phpunit/phpunit": "^9.6 || ^10.5 || ^11.0"
+    },
+    "suggest": {
+        "woodynew/z-dcat-iframe-tab": "Enables native iframe-tab navigation for OpenIFrameTab; otherwise links use normal navigation."
+    },
+    "autoload": {
+        "psr-4": {
+            "Woodynew\\DcatAdminKit\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Woodynew\\DcatAdminKit\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "phpstan": "phpstan analyse --memory-limit=1G",
+        "check": [
+            "@test",
+            "@phpstan"
+        ]
+    },
+    "extra": {
+        "dcat-admin": "Woodynew\\DcatAdminKit\\DcatAdminKitServiceProvider",
+        "laravel": {
+            "providers": [
+                "Woodynew\\DcatAdminKit\\DcatAdminKitServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

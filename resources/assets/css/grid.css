@@ -1,0 +1,20 @@
+.data-table tbody td {
+    height: 50px !important;
+}
+
+#grid-table thead th,
+.table-head-fixed thead th {
+    background-color: #ececf1 !important;
+}
+
+.table-head-fixed {
+    padding-top: 0 !important;
+}
+
+.nicescroll-rails-vr {
+    z-index: 10 !important;
+}
+
+#grid-table thead th .dropdown-menu {
+    top: 126% !important;
+}
