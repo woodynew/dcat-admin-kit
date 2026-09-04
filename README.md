@@ -27,6 +27,8 @@ The install command:
 
 ## Components
 
+完整的中文使用文档请从 [`docs/README.md`](docs/README.md) 开始，内容包括安装、全局配置、每个组件的参数与接入示例，以及二次扩展约定。
+
 | Namespace | Components |
 | --- | --- |
 | `Actions\Form` | `Copy`, `TopGoBack`, `TopSubmit` |
