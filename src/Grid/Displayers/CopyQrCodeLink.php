@@ -137,7 +137,10 @@ HTML;
                 // Dcat sets popover header text to white without a matching background.
                 // Scope a contrasting pair to this QR header, independent of the host theme.
                 $(tip).attr('aria-label', label).find('.popover-header').css({backgroundColor: '#f1f3f5', color: '#343a40'});
-                $(tip).find('.dcat-admin-kit-qrcode-close').trigger('focus');
+                // The tip still sits at the document origin until Popper applies its
+                // transform, so a scrolling focus would drag the page to the top.
+                var closeButton = $(tip).find('.dcat-admin-kit-qrcode-close').get(0);
+                if (closeButton) closeButton.focus({preventScroll: true});
             }
         });
 

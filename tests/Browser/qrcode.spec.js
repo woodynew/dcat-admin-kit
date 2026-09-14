@@ -85,6 +85,20 @@ test('英文关闭按钮与复制内容保持可用', async ({ page, context }) 
     await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toBe('https://example.com/one');
 });
 
+test('滚动后打开二维码弹层不会把页面带回顶部', async ({ page }) => {
+    await page.goto('/');
+    await page.evaluate(() => $('<div>').css('height', '2000px').insertBefore('#pjax-container'));
+    const triggers = page.locator('.dcat-admin-kit-qrcode');
+    await triggers.first().scrollIntoViewIfNeeded();
+    const scrolled = await page.evaluate(() => window.scrollY);
+    expect(scrolled).toBeGreaterThan(100);
+
+    await triggers.first().click();
+    await expect(page.locator('.dcat-admin-kit-qrcode-popover')).toBeVisible();
+    await expect(page.getByRole('button', { name: '关闭二维码' })).toBeFocused();
+    expect(await page.evaluate(() => window.scrollY)).toBe(scrolled);
+});
+
 test('标题与关闭按钮在浅色和深色主题下保持可读对比度', async ({ page }) => {
     await page.goto('/');
     for (const dark of [false, true]) {

@@ -63,6 +63,7 @@ if (! empty($_SERVER['HTTP_X_PJAX'])) {
 <html><head><meta charset="UTF-8"><title>Kit QR regression</title>
 <link rel="stylesheet" href="/assets/dcat/plugins/vendors.min.css">
 <link rel="stylesheet" href="/assets/dcat/css/dcat-app.css">
+<link rel="stylesheet" href="/assets/adminlte/adminlte.css">
 <script src="/assets/dcat/plugins/vendors.min.js"></script>
 <script src="/assets/dcat/plugins/jquery-qrcode/dist/jquery-qrcode.min.js"></script>
 <script src="/assets/dcat/plugins/jquery-pjax/jquery.pjax.min.js"></script>
