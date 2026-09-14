@@ -36,6 +36,7 @@ class Bootstrapper
         $this->registerFormDefaults();
         $this->registerGlobalAssets();
         $this->registerBackToTop();
+        $this->registerLocaleSwitcher();
     }
 
     public function registerColumnDisplayers()
@@ -170,5 +171,21 @@ JS
     protected function enabled($feature)
     {
         return (bool) config("dcat-admin-kit.features.{$feature}", false);
+    }
+
+    protected function registerLocaleSwitcher()
+    {
+        if (! $this->enabled('locale_switcher')) {
+            return;
+        }
+
+        \Dcat\Admin\Layout\Navbar::resolving(function ($navbar) {
+            $navbar->right(function () {
+                return view('woodynew.dcat-admin-kit::partials.locale-switcher', [
+                    'locales' => config('dcat-admin-kit.locale.locales', []),
+                    'locale' => app()->getLocale(),
+                ])->render();
+            });
+        });
     }
 }

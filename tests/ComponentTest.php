@@ -39,6 +39,21 @@ class ComponentTest extends TestCase
         $this->assertStringContainsString('dcat-admin-kit-copyable', $html);
     }
 
+    public function test_qrcode_trigger_exposes_localized_dialog_controls(): void
+    {
+        $this->app->make(\Woodynew\DcatAdminKit\DcatAdminKitServiceProvider::class)->init();
+        foreach (['zh_CN' => '关闭二维码', 'en' => 'Close QR code'] as $locale => $label) {
+            $this->app->setLocale($locale);
+            $html = $this->displayer(CopyQrCodeLink::class, 'https://example.com')->display();
+
+            $this->assertStringContainsString('data-close-label="'.$label.'"', $html);
+            $this->assertStringContainsString('aria-haspopup="dialog"', $html);
+            $this->assertStringContainsString('aria-expanded="false"', $html);
+            $this->assertStringNotContainsString('data-toggle="popover"', $html);
+        }
+        $this->assertSame('', $this->displayer(CopyQrCodeLink::class, null)->display());
+    }
+
     public function test_multi_row_separates_and_escapes_values(): void
     {
         $row = new Fluent([

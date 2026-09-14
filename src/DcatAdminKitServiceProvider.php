@@ -10,6 +10,8 @@ class DcatAdminKitServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom($this->path('config/dcat-admin-kit.php'), 'dcat-admin-kit');
+        // Standalone components also need translations when global features are disabled.
+        $this->loadTranslationsFrom($this->path('resources/lang'), 'woodynew.dcat-admin-kit');
 
         // Public column APIs must remain available even before the Dcat extension
         // record is installed or enabled. Dcat skips init() for disabled extensions.
@@ -30,6 +32,10 @@ class DcatAdminKitServiceProvider extends ServiceProvider
 
     public function init()
     {
+        if (config('dcat-admin-kit.features.locale_switcher', false)) {
+            $this->app['router']->prependMiddlewareToGroup('admin', Http\Middleware\SetLocale::class);
+        }
+
         parent::init();
 
         (new Bootstrapper())->boot();

@@ -79,6 +79,14 @@ class PackageTest extends TestCase
         $this->assertTrue(view()->exists('woodynew.dcat-admin-kit::partials.backtop'));
     }
 
+    public function test_standalone_tools_translate_without_enabling_the_extension(): void
+    {
+        $this->assertFalse(Admin::extension()->enabled('woodynew.dcat-admin-kit'));
+        app()->setLocale('en');
+        $this->assertStringContainsString('Back', (new TopGoBack())->title());
+        $this->assertSame('Copy', trans('woodynew.dcat-admin-kit::kit.copy'));
+    }
+
     public function test_enabling_global_features_registers_builder_listeners_once(): void
     {
         $builders = [
@@ -181,7 +189,7 @@ class PackageTest extends TestCase
         $this->assertDatabaseCount('admin_extensions', 1);
         $this->assertDatabaseHas('admin_extensions', [
             'name' => 'woodynew.dcat-admin-kit',
-            'version' => '0.1.0',
+            'version' => '0.2.0',
             'is_enabled' => 1,
         ]);
         $this->assertFileExists(public_path('vendor/dcat-admin-extensions/woodynew/dcat-admin-kit/css/grid.css'));

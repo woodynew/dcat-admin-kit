@@ -5,6 +5,29 @@ on:
   pull_request:
 
 jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, pdo_sqlite
+          coverage: none
+      - run: composer update --prefer-dist --no-interaction --no-progress --with laravel/framework:^12.0 --with orchestra/testbench:^10.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: qrcode-browser-failure
+          path: test-results/
+
   test:
     runs-on: ubuntu-latest
     strategy:

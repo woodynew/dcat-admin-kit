@@ -43,7 +43,7 @@ Kit 在 Laravel 服务提供者的 `register()` 阶段注册公共列别名，�
 
 | 目标位置 | 推荐基类 | Kit 目录 |
 | --- | --- | --- |
-| 表单顶部工具 | `Dcat\Admin\Form\Tool` | `src/Actions/Form` |
+| 表单顶部工具 | `Dcat\Admin\Form\AbstractTool` | `src/Actions/Form` |
 | Grid 顶部工具 | `Dcat\Admin\Grid\Tools\AbstractTool` | `src/Grid/Tools` |
 | Grid 行操作 | `Dcat\Admin\Grid\RowAction` | `src/Grid/RowActions` |
 | Grid 行操作展示器 | `Dcat\Admin\Grid\Displayers\Actions` | `src/Grid/Actions` |
@@ -78,6 +78,12 @@ if (! $this->enabled('feature_name')) {
 3. 确保 `Bootstrapper::boot()` 重复执行不会重复注册监听器或脚本；
 4. 补充 Package/Component 测试和本目录文档；
 5. 不把隐藏按钮当作权限控制。
+
+## 新增组件的多语言要求
+
+所有默认标题、按钮、提示和无障碍标签都应使用本包的 `woodynew.dcat-admin-kit::kit.*` 翻译键，同步维护简中、繁中和英文。调用者提供的业务标题仍由调用者翻译；不要把其他扩展的文案集中到 Kit。
+
+PHP、Blade 与 JavaScript 都应覆盖到，翻译应在当前请求语言确定后执行。保持组件自定义标题兼容，并检查公共组件在扩展未启用时仍可取得默认翻译。菜单、应用覆盖及安全 JSON 输出的示例见[多语言接入与开发](localization.md)。
 
 ## 静态资源
 

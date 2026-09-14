@@ -6,8 +6,6 @@ use Dcat\Admin\Grid\Tools\AbstractTool;
 
 class AdminGridHrefTool extends AbstractTool
 {
-    protected $title = '跳转工具';
-
     protected $style = 'btn btn-primary waves-effect';
 
     private $href;
@@ -16,7 +14,7 @@ class AdminGridHrefTool extends AbstractTool
     {
         $this->href = (string) $href;
 
-        parent::__construct($title);
+        parent::__construct($title ?: trans('woodynew.dcat-admin-kit::kit.link_tool'));
     }
 
     protected function href()

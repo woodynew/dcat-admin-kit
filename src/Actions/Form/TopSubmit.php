@@ -6,7 +6,10 @@ use Dcat\Admin\Form\AbstractTool;
 
 class TopSubmit extends AbstractTool
 {
-    protected $title = '<i class="feather icon-save"></i>&nbsp;提交';
+    public function __construct($title = null)
+    {
+        parent::__construct($title ?: '<i class="feather icon-save"></i>&nbsp;'.trans('woodynew.dcat-admin-kit::kit.submit'));
+    }
 
     protected $style = 'btn btn-sm btn-primary';
 

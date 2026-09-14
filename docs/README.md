@@ -2,16 +2,17 @@
 
 Dcat Admin Kit 是面向 `woodynew/dcat-laravel-admin` 的通用扩展包，提供可单独使用的列显示器、表单工具、Grid 工具、行操作、组件与辅助方法，也提供一组默认关闭的全局界面特性。
 
-本文档以 Dcat Admin Kit `0.1.x` 和 `woodynew/dcat-laravel-admin` `2.2.4+` 为基线。
+本文档以 Dcat Admin Kit `0.2.x` 和 `woodynew/dcat-laravel-admin` `2.2.4+` 为基线。
 
 ## 从这里开始
 
 1. [安装与启用](installation.md)：安装前提、安装命令、发布资源、验证与常见问题。
-2. [全局特性](global-features.md)：8 个配置开关的实际影响和推荐启用方式。
+2. [全局特性](global-features.md)：9 个配置开关的实际影响和推荐启用方式。
 3. [Grid 列显示器](column-displayers.md)：二维码与复制、多字段合并、长文本弹窗、尾部截取。
 4. [操作与工具](actions-and-tools.md)：表单顶部工具、Grid 行操作、Grid 顶部工具和全局操作样式。
 5. [组件与辅助工具](widgets-and-support.md)：`PostTable` 与 `AdminFormUtil`。
 6. [二次扩展约定](extending.md)：新增列扩展、操作类或全局特性时应遵循的接入方式。
+7. [多语言](localization.md)：语言切换、Session 偏好、iframe 联动与语言包约定。
 
 ## 快速安装
 

@@ -6,7 +6,10 @@ use Dcat\Admin\Form\AbstractTool;
 
 class TopGoBack extends AbstractTool
 {
-    protected $title = '<i class="feather icon-chevron-left"></i>&nbsp;返回';
+    public function __construct($title = null)
+    {
+        parent::__construct($title ?: '<i class="feather icon-chevron-left"></i>&nbsp;'.trans('woodynew.dcat-admin-kit::kit.go_back'));
+    }
 
     protected $style = 'btn btn-sm btn-primary';
 

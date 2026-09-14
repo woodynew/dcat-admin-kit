@@ -27,7 +27,7 @@ class GridFormTool extends AbstractTool
 
     public function title()
     {
-        return $this->title ?: '表单工具';
+        return $this->title ?: trans('woodynew.dcat-admin-kit::kit.form_tool');
     }
 
     public function confirm()

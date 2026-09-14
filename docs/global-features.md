@@ -14,6 +14,7 @@ return [
         'back_to_top' => false,
         'grid_assets' => false,
         'global_styles' => false,
+        'locale_switcher' => false,
     ],
 ];
 ```
@@ -36,6 +37,7 @@ php artisan config:cache
 | `back_to_top` | 所有后台页面 | 页面滚动超过约半屏后显示回到顶部按钮 |
 | `grid_assets` | 所有 Grid | 增加固定表头样式、表格尺寸调整和本地 NiceScroll 横向滚动条 |
 | `global_styles` | 整个后台 | 加载 Kit 的全局布局样式，包括 208px 侧栏、导航、内容区、表格、隐藏页脚和 iframe-tab 细节 |
+| `locale_switcher` | 后台页面与请求 | 顶栏语言选择器、Session 偏好和请求语言设置；详见[多语言](localization.md) |
 
 ## 按需开启
 
