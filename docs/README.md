@@ -2,7 +2,7 @@
 
 Dcat Admin Kit 是面向 `woodynew/dcat-laravel-admin` 的通用扩展包，提供可单独使用的列显示器、表单工具、Grid 工具、行操作、组件与辅助方法，也提供一组默认关闭的全局界面特性。
 
-本文档以 Dcat Admin Kit `0.2.x` 和 `woodynew/dcat-laravel-admin` `2.2.4+` 为基线。
+本文档以 `woodynew/dcat-laravel-admin` `2.2.4+` 为基线；Kit 自身的发布版本以包内 `composer.json` 和版本记录为准。
 
 ## 从这里开始
 

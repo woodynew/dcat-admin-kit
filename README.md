@@ -52,14 +52,12 @@ $grid->column('content')->afterlimit(100);
 
 ## 多语言与扩展开发
 
-`0.2.0` 起提供默认关闭的语言切换器 `features.locale_switcher`，内置简体中文、繁體中文和 English。选择保存在当前 Session 中，后台页面、AJAX、PJAX 与同源 iframe 请求跟随 Laravel 当前语言。
+默认关闭的语言切换器 `features.locale_switcher` 内置简体中文、繁體中文和 English。选择保存在当前 Session 中，后台页面、AJAX、PJAX 与同源 iframe 请求跟随 Laravel 当前语言。
 
 Kit 负责切换与自身组件文案，各扩展和应用维护自己的翻译；切换器不会自动翻译写死的菜单、页面标题或业务数据。公共组件的语言包不依赖全局特性是否开启。
 
 - [多语言接入与开发](docs/localization.md)：启用、添加语言、覆盖翻译、菜单与字段、前端文案和 iframe 联动。
 - [二次扩展约定](docs/extending.md)：新增组件时的多语言要求。
-
-该能力自 `0.2.0` 起提供；`0.1.0` 及更早版本不包含语言切换与 Kit 语言包。
 
 ## Global behavior
 
