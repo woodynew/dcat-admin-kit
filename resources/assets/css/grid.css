@@ -5,6 +5,8 @@
 #grid-table thead th,
 .table-head-fixed thead th {
     background-color: #ececf1 !important;
+    /* 表头文字不换行：换行会撑高表头（"启用状态" 会折成两行）。窄屏时整表横向滚动，与 Dcat 固定列布局一致。 */
+    white-space: nowrap;
 }
 
 .table-head-fixed {

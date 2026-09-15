@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.2] - 2026-09-15
+
+- Keep grid header labels on one line. A translated or long header no longer wraps into a taller header row; the table keeps its width and the column edge scrolls as before.
+
 ## [0.2.1] - 2026-09-15
 
 - Stop the QR-code popover from scrolling the page back to the top when it moves focus to its close button. The trigger keeps the page position and the accessible focus transfer.

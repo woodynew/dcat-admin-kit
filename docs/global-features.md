@@ -35,7 +35,7 @@ php artisan config:cache
 | `right_side_filter` | 所有 Grid Filter | 默认收起筛选器，并改用右侧滑出式筛选视图 |
 | `top_form_tools` | 所有 Form | 在表单顶部追加“返回”和“提交”工具 |
 | `back_to_top` | 所有后台页面 | 页面滚动超过约半屏后显示回到顶部按钮 |
-| `grid_assets` | 所有 Grid | 增加固定表头样式、表格尺寸调整和本地 NiceScroll 横向滚动条 |
+| `grid_assets` | 所有 Grid | 增加固定表头样式、表格尺寸调整和本地 NiceScroll 横向滚动条；表头文字保持单行，不再因换行撑高表头行 |
 | `global_styles` | 整个后台 | 加载 Kit 的全局布局样式，包括 208px 侧栏、导航、内容区、表格、隐藏页脚和 iframe-tab 细节 |
 | `locale_switcher` | 后台页面与请求 | 顶栏语言选择器、Session 偏好和请求语言设置；详见[多语言](localization.md) |
 
