@@ -10,4 +10,7 @@ return [
         'Add an accessible QR-code close button with outside-click and Escape dismissal, single-popover behavior, and PJAX cleanup.',
         'Keep the QR-code header and close button legible in both light and dark themes.',
     ],
+    '0.2.1' => [
+        'Stop the QR-code popover from scrolling the page back to the top when it moves focus to its close button.',
+    ],
 ];

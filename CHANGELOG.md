@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2026-09-15
+
+- Stop the QR-code popover from scrolling the page back to the top when it moves focus to its close button. The trigger keeps the page position and the accessible focus transfer.
+
 ## [0.2.0] - 2026-09-14
 
 - Add an opt-in locale switcher with session preferences, authenticated CSRF-protected switching, and same-origin iframe shell reloads.

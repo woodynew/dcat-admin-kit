@@ -189,7 +189,7 @@ class PackageTest extends TestCase
         $this->assertDatabaseCount('admin_extensions', 1);
         $this->assertDatabaseHas('admin_extensions', [
             'name' => 'woodynew.dcat-admin-kit',
-            'version' => '0.2.0',
+            'version' => '0.2.1',
             'is_enabled' => 1,
         ]);
         $this->assertFileExists(public_path('vendor/dcat-admin-extensions/woodynew/dcat-admin-kit/css/grid.css'));
