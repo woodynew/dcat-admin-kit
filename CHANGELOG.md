@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.3] - 2026-09-17
+
+- Adapt the grid header, its top and bottom separator lines, and both NiceScroll scrollbars to the dark theme. The dark theme previously left the header light, drew two white separator lines around it, and kept the light scrollbar colors written by the JavaScript initializer.
+- Show only the QR code in its popover. The title bar and close button are gone; close it by clicking outside, pressing Escape, or clicking the same trigger again. In dark mode the popover stays a white card with a matching arrow and a dark shadow, and the body padding is removed so the card hugs the image.
+- Fix the QR code size options. `width` and `height` are now applied through the plugin's `size` option, which was previously ignored and always rendered 200x200. A new fifth `$quiet` argument sets the quiet zone in modules: the default is 2 to keep the border narrow, while 4 — the value required by the specification and used by ZXing — remains available for print or heavy downscaling.
+- Confirm a successful copy with a short toast. The tooltip that showed the raw content on every click is replaced by a compact, auto-dismissing result message.
+
 ## [0.2.2] - 2026-09-15
 
 - Keep grid header labels on one line. A translated or long header no longer wraps into a taller header row; the table keeps its width and the column edge scrolls as before.

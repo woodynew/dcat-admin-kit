@@ -48,10 +48,13 @@ $asset = \Dcat\Admin\Admin::asset();
 $scripts = new \ReflectionProperty($asset, 'script');
 $scripts->setAccessible(true);
 $script = implode(";\n", array_unique($scripts->getValue($asset)));
+// Displayer 通过 Admin::style() 注册弹层样式；测试页要按真实后台那样输出，
+// 否则暗色适配这类纯样式改动在回归里看不到。
+$style = $asset->styleToHtml();
 $page = (int) ($_GET['page'] ?? 1);
 $fragment = '<h1>Page '.$page.'</h1>'.$links
     .'<a data-fixture-pjax href="/?page='.($page + 1).'">Next via PJAX</a>'
-    .'<script>'.$script.'</script>';
+    .$style.'<script>'.$script.'</script>';
 
 header('Content-Type: text/html; charset=UTF-8');
 if (! empty($_SERVER['HTTP_X_PJAX'])) {
@@ -64,7 +67,9 @@ if (! empty($_SERVER['HTTP_X_PJAX'])) {
 <link rel="stylesheet" href="/assets/dcat/plugins/vendors.min.css">
 <link rel="stylesheet" href="/assets/dcat/css/dcat-app.css">
 <link rel="stylesheet" href="/assets/adminlte/adminlte.css">
+<link rel="stylesheet" href="/assets/dcat/plugins/extensions/toastr.css">
 <script src="/assets/dcat/plugins/vendors.min.js"></script>
+<script src="/assets/dcat/plugins/extensions/toastr.min.js"></script>
 <script src="/assets/dcat/plugins/jquery-qrcode/dist/jquery-qrcode.min.js"></script>
 <script src="/assets/dcat/plugins/jquery-pjax/jquery.pjax.min.js"></script>
 </head><body style="padding:80px;min-height:100vh">

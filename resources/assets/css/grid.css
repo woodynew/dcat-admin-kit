@@ -9,12 +9,37 @@
     white-space: nowrap;
 }
 
+/* 暗色主题：底色跟随主题，否则上面固定的浅灰 !important 会让表头在暗色页面上保持亮色 */
+body.dark-mode #grid-table thead th,
+body.dark-mode .table-head-fixed thead th {
+    background-color: #222233 !important;
+}
+
+/* 暗色主题：adminlte 的 .table-head-fixed 用 inset box-shadow 画表头上下两条分隔线，
+   颜色取自浅色的 $table-border-color（#eff1f7），暗色下就成了两条白线；
+   顶部那条正好贴着标签栏下沿，看起来像标签栏和表头重叠。换成主题的深色边框色。 */
+body.dark-mode .table.table-head-fixed thead tr:first-child th {
+    box-shadow: inset 0 1px 0 #303247, inset 0 -1px 0 #303247 !important;
+}
+
 .table-head-fixed {
     padding-top: 0 !important;
 }
 
 .nicescroll-rails-vr {
     z-index: 10 !important;
+}
+
+/* 暗色主题：NiceScroll 的轨道和滑块颜色在 JS 初始化时写死为浅色（#ECECF1 / #CACACA），
+   横向和纵向滚动条在暗色页面上都不会变。它把颜色写成元素内联样式，
+   所以这里必须用 !important 才能覆盖，好处是不用重建实例，切换主题即时生效。 */
+body.dark-mode .nicescroll-rails-vr,
+body.dark-mode .nicescroll-rails-hr {
+    background-color: #1e1e2d !important;
+}
+
+body.dark-mode .nicescroll-cursors {
+    background-color: #4a4d68 !important;
 }
 
 #grid-table thead th .dropdown-menu {

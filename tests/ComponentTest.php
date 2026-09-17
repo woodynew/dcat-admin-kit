@@ -39,19 +39,44 @@ class ComponentTest extends TestCase
         $this->assertStringContainsString('dcat-admin-kit-copyable', $html);
     }
 
-    public function test_qrcode_trigger_exposes_localized_dialog_controls(): void
+    public function test_qrcode_trigger_exposes_localized_dialog_label(): void
     {
         $this->app->make(\Woodynew\DcatAdminKit\DcatAdminKitServiceProvider::class)->init();
-        foreach (['zh_CN' => '关闭二维码', 'en' => 'Close QR code'] as $locale => $label) {
+        foreach (['zh_CN' => '二维码', 'en' => 'QR code'] as $locale => $label) {
             $this->app->setLocale($locale);
             $html = $this->displayer(CopyQrCodeLink::class, 'https://example.com')->display();
 
-            $this->assertStringContainsString('data-close-label="'.$label.'"', $html);
+            $this->assertStringContainsString('data-original-label="'.$label.'"', $html);
+            $this->assertStringContainsString('aria-label="'.$label.'"', $html);
             $this->assertStringContainsString('aria-haspopup="dialog"', $html);
             $this->assertStringContainsString('aria-expanded="false"', $html);
             $this->assertStringNotContainsString('data-toggle="popover"', $html);
+            // 弹层没有关闭按钮，入口不再输出关闭提示。
+            $this->assertStringNotContainsString('data-close-label', $html);
         }
         $this->assertSame('', $this->displayer(CopyQrCodeLink::class, null)->display());
+    }
+    public function test_qrcode_quiet_option_defaults_and_clamps(): void
+    {
+        // 默认 2 个模块（与草料二维码默认码边距一致）。
+        $default = $this->displayer(CopyQrCodeLink::class, 'https://example.com')->display();
+        $this->assertStringContainsString('data-quiet="2"', $default);
+        $this->assertStringContainsString('data-width="200"', $default);
+        $this->assertStringContainsString('data-height="200"', $default);
+
+        // 可调：打印等保守场景调到规范的 4。
+        $wide = $this->displayer(CopyQrCodeLink::class, 'https://example.com')->display(null, null, 300, 300, 4);
+        $this->assertStringContainsString('data-quiet="4"', $wide);
+        $this->assertStringContainsString('data-width="300"', $wide);
+
+        // 负数是非法的，收敛到 0。
+        $clamped = $this->displayer(CopyQrCodeLink::class, 'https://example.com')->display(null, null, 200, 200, -3);
+        $this->assertStringContainsString('data-quiet="0"', $clamped);
+
+        // 非数字内容同样收敛到 0，不能把注入内容原样写进属性。
+        $injected = $this->displayer(CopyQrCodeLink::class, 'https://example.com')->display(null, null, 200, 200, '"><script>alert(1)</script>');
+        $this->assertStringNotContainsString('<script>', $injected);
+        $this->assertStringContainsString('data-quiet="0"', $injected);
     }
 
     public function test_multi_row_separates_and_escapes_values(): void

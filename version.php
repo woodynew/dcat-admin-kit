@@ -17,4 +17,10 @@ return [
         'Keep grid header labels on one line so a translated or long header no longer wraps into a taller header row.',
         'Document the header behavior alongside the other global feature switches.',
     ],
+    '0.2.3' => [
+        'Adapt the grid header, its top and bottom separator lines, and both NiceScroll scrollbars to the dark theme.',
+        'Show only the QR code in its popover: drop the title bar and close button, keep the QR code on a white card with a matching arrow in dark mode, and remove the extra body padding.',
+        'Fix the QR code size options: honor width and height through the plugin size option, and add a quiet-zone option defaulting to 2 modules and configurable up to the 4-module specification.',
+        'Confirm a successful copy with a short toast instead of showing the raw content in a tooltip.',
+    ],
 ];
