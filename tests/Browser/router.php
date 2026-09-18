@@ -33,6 +33,41 @@ $app = \Orchestra\Testbench\Foundation\Application::create(null, function ($app)
 $app->setLocale(($_GET['locale'] ?? '') === 'en' ? 'en' : 'zh_CN');
 $app->make(\Woodynew\DcatAdminKit\DcatAdminKitServiceProvider::class)->init();
 
+// 表单顶部工具夹具：按真实后台的层级输出（工具在 form 内的 .box-header，原生 button.submit
+// 在同一个 form 内），并加载 dcat-app.js 让 $.fn.buttonLoading 是真实实现而不是替身。
+if (($_GET['fixture'] ?? '') === 'top-tools') {
+    $tools = (new \Woodynew\DcatAdminKit\Actions\Form\TopGoBack)->render()
+        .(new \Woodynew\DcatAdminKit\Actions\Form\TopSubmit)->render();
+    $asset = \Dcat\Admin\Admin::asset();
+    $scripts = new \ReflectionProperty($asset, 'script');
+    $scripts->setAccessible(true);
+    $script = implode(";\n", array_unique($scripts->getValue($asset)));
+
+    header('Content-Type: text/html; charset=UTF-8');
+    ?>
+<!doctype html>
+<html><head><meta charset="UTF-8"><title>Kit form tools regression</title>
+<link rel="stylesheet" href="/assets/dcat/plugins/vendors.min.css">
+<link rel="stylesheet" href="/assets/dcat/css/dcat-app.css">
+<link rel="stylesheet" href="/assets/adminlte/adminlte.css">
+<script src="/assets/dcat/plugins/vendors.min.js"></script>
+<script src="/assets/dcat/plugins/jquery-pjax/jquery.pjax.min.js"></script>
+</head><body style="padding:40px">
+<form id="form-top-tools" action="/?fixture=top-tools" method="post" class="form-horizontal" pjax-container>
+    <div class="box-header with-border"><?= $tools ?></div>
+    <div class="box-body"><p>Fixture body</p></div>
+    <div class="box-footer"><button type="button" class="btn btn-primary submit">提交</button></div>
+</form>
+<script src="/assets/dcat/js/dcat-app.js"></script>
+<script>
+window.Dcat = CreateDcat({pjax_container_selector: '#pjax-container', token: 'fixture', colors: {}, lang: {}, dark_mode: false, sidebar_dark: false});
+</script>
+<script><?= $script ?></script>
+</body></html>
+    <?php
+    exit;
+}
+
 $links = '';
 foreach (['https://example.com/one', 'https://example.com/?q="<script>alert(1)</script>'] as $index => $value) {
     $grid = \Mockery::mock(\Dcat\Admin\Grid::class);
