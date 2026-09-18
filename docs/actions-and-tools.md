@@ -41,10 +41,12 @@ $form->tools(function (Dcat\Admin\Form\Tools $tools) {
 });
 ```
 
-- `TopGoBack`：在 iframe-tab 环境中优先返回当前活动页；无法识别 iframe-tab 或跨域时退回浏览器历史记录。
-- `TopSubmit`：查找当前表单或当前卡片中的第一个 `button.submit`，并触发其点击事件。
+- `TopGoBack`：在 iframe-tab 环境中优先返回当前活动页；无法识别 iframe-tab 或跨域时退回浏览器历史记录。确认即将离开当前页时按钮进入 loading，加载期间不响应重复点击。
+- `TopSubmit`：查找当前表单或当前卡片中的第一个 `button.submit`，并触发其点击事件。顶部按钮与原生提交按钮共用一份 loading：只在真正发出请求时进入 loading，客户端校验未通过、请求失败或服务端返回校验错误时都保持或恢复原状。
 
 如果页面使用完全自定义的提交按钮且没有 `submit` 类，`TopSubmit` 不会自动提交。
+
+两者都依赖 Dcat 的 `$.fn.buttonLoading`（后台默认加载），从浏览器回退缓存（bfcache）恢复页面时会自动复位 loading。
 
 ## Grid 全局行操作样式
 
