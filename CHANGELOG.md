@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.4] - 2026-09-22
+
+- Show a loading state on the form top submit button while the native submit request is in flight. The button follows the native submit button's loading attribute, so it stays idle when client-side validation fails and resets when the request fails or the server returns validation errors.
+- Show a loading state on the form top back button only when navigation will leave the page. It stays idle when there is no history to return to, ignores repeat clicks while loading, and resets when the page is restored from the back-forward cache.
+
 ## [0.2.3] - 2026-09-17
 
 - Adapt the grid header, its top and bottom separator lines, and both NiceScroll scrollbars to the dark theme. The dark theme previously left the header light, drew two white separator lines around it, and kept the light scrollbar colors written by the JavaScript initializer.

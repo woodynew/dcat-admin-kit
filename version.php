@@ -23,4 +23,8 @@ return [
         'Fix the QR code size options: honor width and height through the plugin size option, and add a quiet-zone option defaulting to 2 modules and configurable up to the 4-module specification.',
         'Confirm a successful copy with a short toast instead of showing the raw content in a tooltip.',
     ],
+    '0.2.4' => [
+        'Show a loading state on the form top submit button while the native submit request is in flight, and reset it when validation fails or the request ends.',
+        'Show a loading state on the form top back button only when navigation will leave the page, and reset it when the page is restored from the back-forward cache.',
+    ],
 ];
