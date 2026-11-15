@@ -1,19 +1,48 @@
 <style>
+.dcat-kit-locale-control {
+    position: relative;
+    display: inline-flex;
+    color: #64748b;
+}
+.dcat-kit-locale-control::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+}
+body.dark-mode .dcat-kit-locale-control {
+    color: #c5cddd;
+}
 select.dcat-kit-locale.form-control {
     box-sizing: border-box;
     height: 34px;
     min-height: 34px;
     min-width: 120px;
     width: auto;
-    padding: 4px 26px 4px 10px;
+    padding: 4px 34px 4px 12px;
+    border-radius: 6px;
     font-size: 14px;
     line-height: normal;
     box-shadow: none;
-    appearance: auto;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: none;
+    cursor: pointer;
+}
+@media (forced-colors: active) {
+    select.dcat-kit-locale.form-control { appearance: auto; }
+    .dcat-kit-locale-control::after { display: none; }
 }
 </style>
 <ul class="nav navbar-nav float-right">
     <li class="nav-item d-flex align-items-center px-1">
+        <span class="dcat-kit-locale-control">
         <select class="form-control dcat-kit-locale" aria-label="{{ trans('woodynew.dcat-admin-kit::kit.language') }}"
                 title="{{ trans('woodynew.dcat-admin-kit::kit.language_reload') }}"
                 data-url="{{ admin_url('kit/locale') }}" data-current="{{ $locale }}">
@@ -21,6 +50,7 @@ select.dcat-kit-locale.form-control {
                 <option value="{{ $value }}" {{ $locale === $value ? 'selected' : '' }}>{{ $label }}</option>
             @endforeach
         </select>
+        </span>
     </li>
 </ul>
 <script>

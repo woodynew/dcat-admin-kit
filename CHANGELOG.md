@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.5] - 2026-11-15
+
+- Inset the locale selector arrow by 12px and reserve space between the label and arrow. Keep native select behavior, adapt the arrow to light and dark themes, and restore the native arrow in forced-colors mode.
+
 ## [0.2.4] - 2026-09-22
 
 - Show a loading state on the form top submit button while the native submit request is in flight. The button follows the native submit button's loading attribute, so it stays idle when client-side validation fails and resets when the request fails or the server returns validation errors.

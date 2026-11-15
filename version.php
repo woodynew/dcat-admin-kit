@@ -27,4 +27,7 @@ return [
         'Show a loading state on the form top submit button while the native submit request is in flight, and reset it when validation fails or the request ends.',
         'Show a loading state on the form top back button only when navigation will leave the page, and reset it when the page is restored from the back-forward cache.',
     ],
+    '0.2.5' => [
+        'Inset the locale selector arrow by 12px, reserve space between the label and arrow, and keep the native select interaction in light, dark and forced-colors modes.',
+    ],
 ];
