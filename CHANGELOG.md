@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.6] - 2026-11-16
+
+- Exclude the iframe tab bar from global Bootstrap pill margins and remove its legacy left padding override. Ordinary page pills keep their existing spacing, while iframe-tab controls its own centering and compact spacing.
+- Move the desktop iframe bar to 56px so its top border stays below the header when global styles are enabled.
+
+Applications using `features.global_styles` must republish the Kit assets after upgrading: `php artisan vendor:publish --tag=dcat-admin-kit-assets --force`.
+
 ## [0.2.5] - 2026-11-15
 
 - Inset the locale selector arrow by 12px and reserve space between the label and arrow. Keep native select behavior, adapt the arrow to light and dark themes, and restore the native arrow in forced-colors mode.

@@ -30,4 +30,7 @@ return [
     '0.2.5' => [
         'Inset the locale selector arrow by 12px, reserve space between the label and arrow, and keep the native select interaction in light, dark and forced-colors modes.',
     ],
+    '0.2.6' => [
+        'Keep iframe tab spacing under the iframe extension control when global styles are enabled, and keep the desktop tab bar top border clear of the header.',
+    ],
 ];

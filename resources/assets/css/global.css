@@ -44,7 +44,7 @@
     body:not(.sidebar-mini-md) .iframe-tab-container {
         width: calc(100% - 208px);
         margin-left: 208px !important;
-        top: 55px !important;
+        top: 56px !important;
     }
 }
 
@@ -67,7 +67,7 @@
 
 @media (min-width: 768px) {
     body:not(.sidebar-mini-md) .iframe-tab-container {
-        top: 55px !important;
+        top: 56px !important;
     }
 }
 
@@ -96,7 +96,7 @@
     letter-spacing: 3px !important;
 }
 
-.nav.nav-pills .nav-item .nav-link {
+.nav.nav-pills:where(:not(#iframe-tab)) .nav-item .nav-link {
     margin: 0 0 8px !important;
 }
 
@@ -134,10 +134,6 @@
 .layui-layer-content img {
     max-width: 40vw;
     max-height: 90vh;
-}
-
-#iframe-tab-container #iframe-tab .nav-link {
-    padding-left: 20px !important;
 }
 
 .main-footer {
